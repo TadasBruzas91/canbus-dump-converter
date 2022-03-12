@@ -59,7 +59,7 @@ for col_index, can_id in enumerate(can.can_ids):
         can_data_formated[col_index].append(can_message)
     
 
-with open("output/formatted_canbus_messages_for_excel.txt", "w") as f:
+with open("output/formatted_canbus_messages_for_excel.csv", "w") as f:
     biggest_list = 0
     for indx,item in enumerate(can_data_formated):
         if len(item) > biggest_list:
