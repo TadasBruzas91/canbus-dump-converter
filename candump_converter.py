@@ -1,7 +1,12 @@
 import sys
+import os
 from canbus import CanBus
 
 args = sys.argv[1:]
+output_file_path = "output/"
+output_file_name = "formatted_canbus_messages_for_excel"
+output_file_type = ".csv"
+complete_output_path = output_file_path + output_file_name + output_file_type
 
 help_message = """
 ************ CAN BUS DUMP CONVERTER ************
@@ -59,7 +64,12 @@ for col_index, can_id in enumerate(can.can_ids):
         can_data_formated[col_index].append(can_message)
     
 
-with open("output/formatted_canbus_messages_for_excel.csv", "w") as f:
+if not os.path.exists(output_file_path):
+        print("Directory created successfuly")
+        os.mkdir(output_file_path)
+
+
+with open(complete_output_path, "w") as f:
     biggest_list = 0
     for indx,item in enumerate(can_data_formated):
         if len(item) > biggest_list:
